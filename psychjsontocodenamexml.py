@@ -24,13 +24,22 @@ def convAnim(a):
     print('CONVERTING"' + a['anim'] + '" SUCCESS')
     return b
 
+def sC():
+    sc = False
+    textfileee = open('config.json', "r").read()
+    textfileee2 = json.loads(textfileee)
+    if (textfileee2['askIfPlayer'] == True):
+        sc = (input('Do you wish for ' + str(sys.argv[1]).rstrip('.json')+' to be a player character (y/n): ') == 'y')
+    return sc
 def convert(jsonfile):
     #turns psych char json into codename xml
-    print('CONVERTING')
     jsonthing = json.loads(jsonfile)
     print('SUCCESSFULLY LOADED JSON')
+    specialChoice = str(sC()).lower()
+    print('CONVERTING')
     codenamefile = '<!DOCTYPE codename-engine-character>'
-    codenamefile+='\n<character isPlayer="false" flipX="'+str(jsonthing['flip_x'])+'" holdTime="'+str(jsonthing['sing_duration'])+'"'
+    codenamefile+='\n<character isPlayer="'+specialChoice+'"'
+    codenamefile+= ' flipX="'+str(jsonthing['flip_x']).lower()+'" holdTime="'+str(jsonthing['sing_duration'])+'"'
     print('CONVERTING CHARACTER POSITION')
     pos = []
     for i in jsonthing['position']: pos.append(i)
@@ -46,7 +55,7 @@ def convert(jsonfile):
     #whyyy make true and false have to be camelcased python, whyyyyyy
     print('CONVERTING ANTIALIASING')
     if jsonthing['no_antialiasing'] != False: codenamefile+=' antialiasing="'+(str(not jsonthing['no_antialiasing']).lower())+'"'
-    codenamefile+='''> <!-- CONVERTED VIA psychjsontocodename.py by Burgerballs -->
+    codenamefile+='''> <!-- CONVERTED VIA psychjsontocodenamexml.py by Burgerballs -->
 
 '''
     print('MISC VARIABLES CONVERTED')
