@@ -24,21 +24,28 @@ def convAnim(a):
     print('CONVERTING"' + a['anim'] + '" SUCCESS')
     return b
 
+ch = [['isPlayer="false"', 'dad'], ['isPlayer="true"', 'bf'], ['isPlayer="false" isGF="true"', 'gf']]
 def sC():
-    sc = False
+    sc = 'isPlayer="false"'
     textfileee = open('config.json', "r").read()
     textfileee2 = json.loads(textfileee)
     if (textfileee2['askIfPlayer'] == True):
-        sc = (input('Do you wish for ' + str(sys.argv[1]).rstrip('.json')+' to be a player character (y/n): ') == 'y')
+        sc = (input('What is the character type for ' + str(sys.argv[1]).rstrip('.json')+'? (dad/bf/gf): '))
+        for i in range(len(ch)):
+            if ch[i][1]==sc: sc = ch[i][0]
+    if not sc.startswith('i'):
+        print('wtffff invalid input!?!?!?, crashin!!!')
+        sys.exit()
+
     return sc
 def convert(jsonfile):
     #turns psych char json into codename xml
     jsonthing = json.loads(jsonfile)
     print('SUCCESSFULLY LOADED JSON')
-    specialChoice = str(sC()).lower()
+    specialChoice = sC()
     print('CONVERTING')
     codenamefile = '<!DOCTYPE codename-engine-character>'
-    codenamefile+='\n<character isPlayer="'+specialChoice+'"'
+    codenamefile+='\n<character ' + specialChoice
     codenamefile+= ' flipX="'+str(jsonthing['flip_x']).lower()+'" holdTime="'+str(jsonthing['sing_duration'])+'"'
     print('CONVERTING CHARACTER POSITION')
     pos = []
