@@ -10,4 +10,6 @@ TO USE THIS FILE, ENTER `python psychjsontocodenamexml.py <YOUR FILE NAME>.json`
 
 The releases have an accompanying "config.json", make sure that it is in the same directory as the script or I will eat your skin and drink your fluids!
 
+*if for whatever reason you have a character named config, i suggest that you rename the character to something else before converting it btw lol!!!*
+
 YOU NEED PYTHON INSTALLED TOO BTW!!!
