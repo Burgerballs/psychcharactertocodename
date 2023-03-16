@@ -8,18 +8,20 @@ def convAnim(a):
     print('CONVERTING"' + a['anim'] + '"')
     b = '   <anim name="'+a['anim']+'" anim="'+a['name']+'"'
     if a['fps'] != 24: b+=' fps="'+str(a['fps'])+'"'
+    b+=' loop="'+str(a['loop']).lower()+'"'
     offset = []
     for i in a['offsets']: offset.append(i)
     b+=' x="'+str(offset[0])+'"' 
     b+=' y="'+str(offset[1])+'"'
     indices = []
-    for i in a['indices']: offset.indices(i)
+    for i in a['indices']: indices.append(i)
     if (a['indices'] != []):
-        b+='indices= "'
+        b+=' indices="'
         for i in indices:
             b+=str(i)
-            if i != indices[len(indices)]-1:
+            if i != indices[len(indices)-1]:
                 b+=','
+        b+='"'
     b+='/>\n'
     print('CONVERTING"' + a['anim'] + '" SUCCESS')
     return b
