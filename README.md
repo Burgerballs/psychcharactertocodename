@@ -1,3 +1,7 @@
+DO NOT USE THIS!!!! DO, NOT, USE, THIS!!!!
+IT SUCKS!!!!!!!!!!!!!!!
+DO NOT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # psychcharactertocodename
 
 *The gf.json from base Psych Engine, converted over to Codename Engine via the script in this repo*
